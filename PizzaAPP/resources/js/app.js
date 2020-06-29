@@ -1,3 +1,9 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import MainComponent from "./components/front/MainComponent";
+import Landing from "./components/front/Landing";
+import Cart from "./components/front/Cart";
+import Order from "./components/front/Order";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,7 +13,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+Vue.use(VueRouter);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -30,6 +36,28 @@ Vue.component('order-component', require('./components/front/Order').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'Landing',
+            component: Landing
+        },
+        {
+            path: '/cart',
+            name: 'cart',
+            component: Cart,
+        },
+        {
+            path: '/order',
+            name: 'order',
+            component: Order,
+        },
+    ],
+});
+
 const app = new Vue({
     el: '#app',
+    router,
 });

@@ -86,7 +86,11 @@
             </div>
 
             <div class="row">
-                <a id="" class="waves-effect waves-light btn-large deep-purple">ORDER NOW</a>
+                <router-link :to="{ name: 'order' }"
+                             class="waves-effect waves-light btn-large deep-purple"
+                >
+                    <b>ORDER NOW</b>
+                </router-link>
             </div>
         </div>
     </div>

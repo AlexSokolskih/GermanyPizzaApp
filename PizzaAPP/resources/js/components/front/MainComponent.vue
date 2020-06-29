@@ -7,16 +7,17 @@
                         <img class="css-adaptive" src="img/logo.png" alt="">
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="collapsible.html"><i class="material-icons green-text">shopping_cart</i></a></li>
+                    <li>
+                        <router-link :to="{ name: 'cart' }">
+                            <i class="material-icons green-text">shopping_cart</i>
+                        </router-link>
+                    </li>
                 </ul>
             </div>
         </nav>
     </div>
 
-
-    <landing-component></landing-component>
-    <cart-component></cart-component>
-    <order-component></order-component>
+    <router-view></router-view>
 </div>
 </template>
 

@@ -48,7 +48,12 @@
             </div>
         </div>
         <div class="row">
-            <a id="" class="waves-effect waves-light btn-large deep-purple"><b>GO to cart</b><i class="material-icons right">shopping_cart</i></a>
+            <router-link :to="{ name: 'cart' }"
+                         class="waves-effect waves-light btn-large deep-purple"
+            >
+                <b>GO to cart</b>
+                <i class="material-icons right">shopping_cart</i>
+            </router-link>
         </div>
     </div>
 </template>

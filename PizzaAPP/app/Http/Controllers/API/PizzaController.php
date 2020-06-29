@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Pizza;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        //
+        //Pizza::all()
+        return Pizza::all();
     }
 
     /**

@@ -18,67 +18,7 @@
                         </div>
                         <div class="center">
                             <span class="float-left"><i class="material-icons green-text medium">remove</i></span>
-                            <b class="">&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp</b>
-                            <span class="float-left"><i class="material-icons green-text medium">add</i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card small">
-                    <div class="card-title center"><b>Pepperoni</b></div>
-                    <div class="card-image">
-                        <img src="img/Pepperoni-traditional.jpg">
-                    </div>
-                    <div class="card-content">
-                    </div>
-                    <div class="card-action">
-                        <div class="center">
-                            <h5 class="font-weight-bold"><b>2</b></h5>
-                        </div>
-                        <div class="center">
-                            <span class="float-left"><i class="material-icons green-text medium">remove</i></span>
-                            <b class="">&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp</b>
-                            <span class="float-left"><i class="material-icons green-text medium">add</i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card small">
-                    <div class="card-title center"><b>Pepperoni</b></div>
-                    <div class="card-image">
-                        <img src="img/Pepperoni-traditional.jpg">
-                    </div>
-                    <div class="card-content">
-                    </div>
-                    <div class="card-action">
-                        <div class="center">
-                            <h5 class="font-weight-bold"><b>2</b></h5>
-                        </div>
-                        <div class="center">
-                            <span class="float-left"><i class="material-icons green-text medium">remove</i></span>
-                            <b class="">&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp</b>
-                            <span class="float-left"><i class="material-icons green-text medium">add</i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card small">
-                    <div class="card-title center"><b>Pepperoni</b></div>
-                    <div class="card-image">
-                        <img src="img/Pepperoni-traditional.jpg">
-                    </div>
-                    <div class="card-content">
-                    </div>
-                    <div class="card-action">
-                        <div class="center">
-                            <h5 class="font-weight-bold"><b>2</b></h5>
-                        </div>
-                        <div class="center">
-                            <span class="float-left"><i class="material-icons green-text medium">remove</i></span>
-                            <b class="">&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp</b>
+                            <b class=""></b>
                             <span class="float-left"><i class="material-icons green-text medium">add</i></span>
                         </div>
                     </div>

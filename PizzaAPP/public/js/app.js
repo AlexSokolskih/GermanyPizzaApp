@@ -1946,66 +1946,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Cart"
 });
@@ -37741,12 +37681,6 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _vm._m(1),
       _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _vm._m(3),
-      _vm._v(" "),
-      _vm._m(4),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: "row" },
@@ -37802,133 +37736,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("b", {}, [_vm._v("      ")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "float-left" }, [
-              _c("i", { staticClass: "material-icons green-text medium" }, [
-                _vm._v("add")
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col s12 m3" }, [
-      _c("div", { staticClass: "card small" }, [
-        _c("div", { staticClass: "card-title center" }, [
-          _c("b", [_vm._v("Pepperoni")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-image" }, [
-          _c("img", { attrs: { src: "img/Pepperoni-traditional.jpg" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-content" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-action" }, [
-          _c("div", { staticClass: "center" }, [
-            _c("h5", { staticClass: "font-weight-bold" }, [
-              _c("b", [_vm._v("2")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "center" }, [
-            _c("span", { staticClass: "float-left" }, [
-              _c("i", { staticClass: "material-icons green-text medium" }, [
-                _vm._v("remove")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("b", {}, [_vm._v("      ")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "float-left" }, [
-              _c("i", { staticClass: "material-icons green-text medium" }, [
-                _vm._v("add")
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col s12 m3" }, [
-      _c("div", { staticClass: "card small" }, [
-        _c("div", { staticClass: "card-title center" }, [
-          _c("b", [_vm._v("Pepperoni")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-image" }, [
-          _c("img", { attrs: { src: "img/Pepperoni-traditional.jpg" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-content" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-action" }, [
-          _c("div", { staticClass: "center" }, [
-            _c("h5", { staticClass: "font-weight-bold" }, [
-              _c("b", [_vm._v("2")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "center" }, [
-            _c("span", { staticClass: "float-left" }, [
-              _c("i", { staticClass: "material-icons green-text medium" }, [
-                _vm._v("remove")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("b", {}, [_vm._v("      ")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "float-left" }, [
-              _c("i", { staticClass: "material-icons green-text medium" }, [
-                _vm._v("add")
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col s12 m3" }, [
-      _c("div", { staticClass: "card small" }, [
-        _c("div", { staticClass: "card-title center" }, [
-          _c("b", [_vm._v("Pepperoni")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-image" }, [
-          _c("img", { attrs: { src: "img/Pepperoni-traditional.jpg" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-content" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-action" }, [
-          _c("div", { staticClass: "center" }, [
-            _c("h5", { staticClass: "font-weight-bold" }, [
-              _c("b", [_vm._v("2")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "center" }, [
-            _c("span", { staticClass: "float-left" }, [
-              _c("i", { staticClass: "material-icons green-text medium" }, [
-                _vm._v("remove")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("b", {}, [_vm._v("      ")]),
+            _c("b", {}),
             _vm._v(" "),
             _c("span", { staticClass: "float-left" }, [
               _c("i", { staticClass: "material-icons green-text medium" }, [

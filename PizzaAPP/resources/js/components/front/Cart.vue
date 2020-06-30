@@ -4,25 +4,10 @@
             <h1>Cart</h1>
         </div>
         <div class="row">
-            <div class="col s12 m3">
-                <div class="card small">
-                    <div class="card-title center"><b>Pepperoni</b></div>
-                    <div class="card-image">
-                        <img src="img/Pepperoni-traditional.jpg">
-                    </div>
-                    <div class="card-content">
-                    </div>
-                    <div class="card-action">
-                        <div class="center">
-                            <h5 class="font-weight-bold"><b>2</b></h5>
-                        </div>
-                        <div class="center">
-                            <span class="float-left"><i class="material-icons green-text medium">remove</i></span>
-                            <b class=""></b>
-                            <span class="float-left"><i class="material-icons green-text medium">add</i></span>
-                        </div>
-                    </div>
-                </div>
+            <div v-for="pizza in pizzas">
+                <cart-card
+                    v-bind:pizza="pizza">
+                </cart-card>
             </div>
 
             <div class="row">
@@ -37,8 +22,41 @@
 </template>
 
 <script>
+    import CartCard from './Cart/CartCard';
+
     export default {
-        name: "Cart"
+        name: "Cart",
+        components: {
+            'cart-card': CartCard,
+        },
+        data() {
+            return {
+                pizzas:[],
+            }
+        },
+        mounted() {
+          this.pizzasInCart();
+        },
+        methods: {
+            pizzasInCart: function () {
+                 var pizzasGlobal = this.$store.state.cart.pizzas.slice();
+                for (var i=0; i<pizzasGlobal.length; i++){
+                    pizzasGlobal[i].count=1;
+                    for (var j=i+1; j<pizzasGlobal.length; j++){
+                        if ( pizzasGlobal[i].id == pizzasGlobal[j].id ){
+                            pizzasGlobal[i].count++;
+                            pizzasGlobal.splice(j, 1);
+                            j--;
+                        }
+                    }
+
+                }
+                this.pizzas = pizzasGlobal;
+                console.log(this.pizzas);
+            }
+        },
+        computed: {
+        }
     }
 </script>
 

@@ -15,7 +15,6 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        //Pizza::all()
         return Pizza::all();
     }
 

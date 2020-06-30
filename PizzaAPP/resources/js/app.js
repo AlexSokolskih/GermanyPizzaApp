@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 import MainComponent from "./components/front/MainComponent";
 import Landing from "./components/front/Landing";
 import Cart from "./components/front/Cart";
@@ -14,6 +15,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
+Vue.use(Vuex)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -57,7 +60,36 @@ const router = new VueRouter({
     ],
 });
 
+
+const store = new Vuex.Store({
+    state: {
+        cart: {
+            pizzas:[],
+        }
+    },
+    mutations: {
+        addPizza(state, pizza) {
+            state.cart.pizzas.push(pizza);
+        },
+        removePizza(state, pizzaRemove) {
+            for (var i=0; i<state.cart.pizzas.length; i++){
+                if (state.cart.pizzas[i].id == pizzaRemove.id){
+                    state.cart.pizzas.splice(i, 1);
+                    break;
+                }
+            }
+        },
+    },
+    getters: {
+        countPizzasInCart: state => {
+            return state.cart.pizzas.length;
+        }
+    }
+})
+
+
 const app = new Vue({
     el: '#app',
     router,
+    store,
 });

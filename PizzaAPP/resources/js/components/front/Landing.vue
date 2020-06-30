@@ -1,54 +1,16 @@
 <template>
     <div class="container lending">
+        <hr style="visibility: hidden;">
         <div class="row">
-            <div class="col s12 m4">
-                <div class="card large">
-                    <span class="card-title"><b>Pepperoni</b></span>
-                    <div class="card-image">
-                        <img src="img/Pepperoni-traditional.jpg">
-                    </div>
-                    <div class="card-content">
-                        <p>American classic with spicy pepperoni, Mozzarella and signature tomato sauce</p>
-                    </div>
-                    <div class="card-action">
-                        <a class="waves-effect waves-light btn-small">ADD TO CART</a>
-                        <b class="price">111 ₽</b>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card large">
-                    <span class="card-title"><b>Pepperoni</b></span>
-                    <div class="card-image">
-                        <img src="img/Pepperoni-traditional.jpg">
-                    </div>
-                    <div class="card-content">
-                        <p>American classic with spicy pepperoni, Mozzarella and signature tomato sauce</p>
-                    </div>
-                    <div class="card-action">
-                        <a class="waves-effect waves-light btn-small">ADD TO CART</a>
-                        <b class="price">111 ₽</b>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card large">
-                    <span class="card-title"><b>Pepperoni</b></span>
-                    <div class="card-image">
-                        <img src="img/Pepperoni-traditional.jpg">
-                    </div>
-                    <div class="card-content">
-                        <p>American classic with spicy pepperoni, Mozzarella and signature tomato sauce</p>
-                    </div>
-                    <div class="card-action">
-                        <a class="waves-effect waves-light btn-small">ADD TO CART</a>
-                        <b class="price">111 ₽</b>
-                    </div>
-                </div>
+            <div v-for="pizza in pizzas">
+                <card-component
+                    v-bind:pizza="pizza"
+                ></card-component>
             </div>
         </div>
         <div class="row">
             <router-link :to="{ name: 'cart' }"
+                         @click="getpizzas"
                          class="waves-effect waves-light btn-large deep-purple"
             >
                 <b>GO to cart</b>
@@ -59,8 +21,36 @@
 </template>
 
 <script>
+   import PizzaCardComponent from './landing/PizzaCard';
+
     export default {
-        name: "landing"
+        name: "landing",
+        components: {
+            'card-component': PizzaCardComponent,
+        },
+        data() {
+            return {
+                pizzas:[],
+            }
+        },
+        mounted() {
+            this.getpizzas();
+        },
+        methods: {
+            getpizzas: function () {
+                axios.get('http://127.0.0.1:8000/api/pizzas')
+                    .then((response) => {
+                        this.pizzas = response.data;
+                        console.log(response.data);
+                    })
+                    .catch(function (error) {
+                        //this.errored = true;
+                        console.log('error:');
+                        console.log(error);
+                    });
+
+            }
+        }
     }
 </script>
 

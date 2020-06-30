@@ -7,9 +7,15 @@
                         <img class="css-adaptive" src="img/logo.png" alt="">
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li>
+                    <li class="">
                         <router-link :to="{ name: 'cart' }">
-                            <i class="material-icons green-text">shopping_cart</i>
+                            <span class="counter-pizza green-text"
+                            v-if="!isCartEmpty">{{ this.$store.getters.countPizzasInCart}} in the cart</span>
+                            <i class="material-icons inline cart-icon"
+                               :class="{
+                                'green-text': !isCartEmpty,
+                               }"
+                            >shopping_cart</i>
                         </router-link>
                     </li>
                 </ul>
@@ -23,7 +29,12 @@
 
 <script>
     export default {
-        name: "MainComponent"
+        name: "MainComponent",
+        computed: {
+            isCartEmpty: function () {
+                return (this.$store.getters.countPizzasInCart == 0) ;
+            },
+        }
     }
 </script>
 

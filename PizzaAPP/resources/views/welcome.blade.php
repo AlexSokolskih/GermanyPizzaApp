@@ -30,6 +30,14 @@
             width: auto;
         }
 
+        nav i.cart-icon{
+            display: inline-block;
+        }
+        nav .counter-pizza{
+            vertical-align: top;
+            font-size: large;
+        }
+
         .card .price{
             font-size: x-large;
             float: right

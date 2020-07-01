@@ -46,6 +46,10 @@
             float: right;
             font-size: x-large;
         }
+
+        .cart .card .increment{
+            cursor: pointer;
+        }
     </style>
     <div id="app">
         <main-component></main-component>

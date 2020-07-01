@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order();
+        $order->name = $request->input('name');
+        $order->surname = $request->input('surname');
+        $order->phone = $request->input('phone');
+        $order->address = $request->input('address');
+        $order->flat = $request->input('flat');
+        $order->floor = $request->input('floor');
+        $order->save();
+
+        $pivot = [];
+        $pizzas = $request->input('pizzas');
+            foreach ( $pizzas as $index => $item) {
+                    $pivot[$item['id']]['count'] = $item['count'];
+            }
+        $order->pizzas()->attach($pivot);
     }
 
     /**

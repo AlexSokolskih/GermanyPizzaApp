@@ -61,7 +61,7 @@ class PizzaSeeder extends Seeder
             'order_number' => 7,
         ]);
         DB::table('pizzas')->insert([
-            'name' => 'Italian with mozzarella and pepperoni',
+            'name' => 'Italian with mozzarella',
             'description' => 'Traditional Italian recipe with two types of cheese: grated Mozzarella and classic chillegini; spicy pepperoni, mushrooms and blend of seasonings',
             'price' => 241,
             'image' => 'e9bd5c6431e2148b1a5fd7d8b9d0df10.jpg',

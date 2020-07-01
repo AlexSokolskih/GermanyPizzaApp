@@ -1,10 +1,10 @@
 <template>
     <div class="col s12 m4">
         <div class="card large">
-            <span class="card-title"><b>{{ pizza.name }}</b></span>
             <div class="card-image">
                 <img v-bind:src="'img/'+pizza.image">
             </div>
+            <span class="card-title"><b>{{ pizza.name }}</b></span>
             <div class="card-content">
                 <p>{{ pizza.description }}</p>
             </div>

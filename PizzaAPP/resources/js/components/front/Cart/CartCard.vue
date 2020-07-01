@@ -13,15 +13,15 @@
                 </div>
                 <div class="center">
                     <span class="float-left">
-                        <i class="material-icons green-text medium"
-                           @click="removeFromCart"
-                        >remove</i>
+                           <i class="material-icons green-text medium increment"
+                              @click="removeFromCart"
+                           >remove</i>
                     </span>
                     <b class=""></b>
                     <span class="float-left">
-                        <i class="material-icons green-text medium"
-                           @click="addToCart"
-                        >add</i>
+                             <i class="material-icons green-text medium increment"
+                                @click="addToCart"
+                             >add</i>
                     </span>
                 </div>
             </div>
@@ -43,7 +43,7 @@
         },
         methods: {
             removeFromCart: function () {
-                    if ( this.pizza.count>0){
+                    if ( this.count>0){
                         this.count--;
                     }
                 this.$store.commit('removePizza', this.pizza);

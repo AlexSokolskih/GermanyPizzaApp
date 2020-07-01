@@ -1930,8 +1930,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Cart",
@@ -1963,7 +1961,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.pizzas = pizzasGlobal;
-      console.log(this.pizzas);
     }
   },
   computed: {}
@@ -2024,7 +2021,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     removeFromCart: function removeFromCart() {
-      if (this.pizza.count > 0) {
+      if (this.count > 0) {
         this.count--;
       }
 
@@ -2089,9 +2086,8 @@ __webpack_require__.r(__webpack_exports__);
     getpizzas: function getpizzas() {
       var _this = this;
 
-      axios.get('http://127.0.0.1:8000/api/pizzas').then(function (response) {
+      axios.get('/api/pizzas').then(function (response) {
         _this.pizzas = response.data;
-        console.log(response.data);
       })["catch"](function (error) {
         //this.errored = true;
         console.log('error:');
@@ -2214,7 +2210,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Order"
+  name: "Order",
+  data: function data() {
+    return {
+      pizzas: [],
+      name: '',
+      surname: '',
+      phone: '',
+      address: '',
+      flat: '',
+      floor: ''
+    };
+  },
+  mounted: function mounted() {
+    console.log('piz1');
+    this.pizzasInCart();
+    console.log('piz2');
+    console.log(this.pizzas);
+  },
+  methods: {
+    pizzasInCart: function pizzasInCart() {
+      var pizzasGlobal = this.$store.state.cart.pizzas.slice();
+
+      for (var i = 0; i < pizzasGlobal.length; i++) {
+        pizzasGlobal[i].count = 1;
+
+        for (var j = i + 1; j < pizzasGlobal.length; j++) {
+          if (pizzasGlobal[i].id == pizzasGlobal[j].id) {
+            pizzasGlobal[i].count++;
+            pizzasGlobal.splice(j, 1);
+            j--;
+          }
+        }
+      }
+
+      var myArray = [];
+
+      for (var i = 0; i < pizzasGlobal.length; i++) {
+        myArray[i] = new Object();
+        myArray[i].count = pizzasGlobal[i].count;
+        myArray[i].id = pizzasGlobal[i].id;
+      }
+
+      this.pizzas = myArray;
+      console.log('this.pizzas');
+      console.log(this.pizzas);
+      console.log(pizzasGlobal);
+    },
+    submitForm: function submitForm(event) {
+      event.preventDefault();
+      console.log(this.pizzas);
+      axios.post('/api/orders', {
+        pizzas: this.pizzas,
+        name: this.name,
+        surname: this.surname,
+        phone: this.phone,
+        address: this.address,
+        flat: this.flat,
+        floor: this.floor
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        // this.errored = true;
+        console.log('error:');
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -37810,28 +37872,26 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row" },
+      _vm._l(_vm.pizzas, function(pizza) {
+        return _c("div", [_c("cart-card", { attrs: { pizza: pizza } })], 1)
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
       [
-        _vm._l(_vm.pizzas, function(pizza) {
-          return _c("div", [_c("cart-card", { attrs: { pizza: pizza } })], 1)
-        }),
-        _vm._v(" "),
         _c(
-          "div",
-          { staticClass: "row" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "waves-effect waves-light btn-large deep-purple",
-                attrs: { to: { name: "order" } }
-              },
-              [_c("b", [_vm._v("ORDER NOW")])]
-            )
-          ],
-          1
+          "router-link",
+          {
+            staticClass: "waves-effect waves-light btn-large deep-purple",
+            attrs: { to: { name: "order" } }
+          },
+          [_c("b", [_vm._v("ORDER NOW")])]
         )
       ],
-      2
+      1
     )
   ])
 }
@@ -37888,7 +37948,7 @@ var render = function() {
             _c(
               "i",
               {
-                staticClass: "material-icons green-text medium",
+                staticClass: "material-icons green-text medium increment",
                 on: { click: _vm.removeFromCart }
               },
               [_vm._v("remove")]
@@ -37901,7 +37961,7 @@ var render = function() {
             _c(
               "i",
               {
-                staticClass: "material-icons green-text medium",
+                staticClass: "material-icons green-text medium increment",
                 on: { click: _vm.addToCart }
               },
               [_vm._v("add")]
@@ -38309,12 +38369,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col s12 m4" }, [
     _c("div", { staticClass: "card large" }, [
-      _c("span", { staticClass: "card-title" }, [
-        _c("b", [_vm._v(_vm._s(_vm.pizza.name))])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "card-image" }, [
         _c("img", { attrs: { src: "img/" + _vm.pizza.image } })
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "card-title" }, [
+        _c("b", [_vm._v(_vm._s(_vm.pizza.name))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-content" }, [

@@ -9,14 +9,12 @@
                     v-bind:pizza="pizza">
                 </cart-card>
             </div>
-
-            <div class="row">
-                <router-link :to="{ name: 'order' }"
-                             class="waves-effect waves-light btn-large deep-purple"
-                >
-                    <b>ORDER NOW</b>
-                </router-link>
-            </div>
+        </div>
+        <div class="row">
+            <router-link :to="{ name: 'order' }"
+                         class="waves-effect waves-light btn-large deep-purple">
+                <b>ORDER NOW</b>
+            </router-link>
         </div>
     </div>
 </template>
@@ -39,7 +37,7 @@
         },
         methods: {
             pizzasInCart: function () {
-                 var pizzasGlobal = this.$store.state.cart.pizzas.slice();
+                var pizzasGlobal = this.$store.state.cart.pizzas.slice();
                 for (var i=0; i<pizzasGlobal.length; i++){
                     pizzasGlobal[i].count=1;
                     for (var j=i+1; j<pizzasGlobal.length; j++){
@@ -52,7 +50,6 @@
 
                 }
                 this.pizzas = pizzasGlobal;
-                console.log(this.pizzas);
             }
         },
         computed: {

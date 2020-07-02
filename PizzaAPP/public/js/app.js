@@ -1930,6 +1930,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Cart",
@@ -2209,10 +2215,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems, options);
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Order",
   data: function data() {
     return {
+      message: '',
+      modal: false,
       pizzas: [],
       name: '',
       surname: '',
@@ -2223,12 +2251,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('piz1');
     this.pizzasInCart();
-    console.log('piz2');
-    console.log(this.pizzas);
   },
   methods: {
+    toogleModal: function toogleModal() {
+      this.modal = !this.modal;
+    },
     pizzasInCart: function pizzasInCart() {
       var pizzasGlobal = this.$store.state.cart.pizzas.slice();
 
@@ -2253,13 +2281,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.pizzas = myArray;
-      console.log('this.pizzas');
-      console.log(this.pizzas);
-      console.log(pizzasGlobal);
+      ;
     },
     submitForm: function submitForm(event) {
+      var _this = this;
+
       event.preventDefault();
-      console.log(this.pizzas);
       axios.post('/api/orders', {
         pizzas: this.pizzas,
         name: this.name,
@@ -2270,10 +2297,12 @@ __webpack_require__.r(__webpack_exports__);
         floor: this.floor
       }).then(function (response) {
         console.log(response);
+        _this.modal = true;
+        _this.message = "<h3>we are starting to cook your pizza</h3>";
       })["catch"](function (error) {
-        // this.errored = true;
         console.log('error:');
         console.log(error);
+        this.message = "something was wrong";
       });
     }
   }
@@ -37869,6 +37898,14 @@ var render = function() {
   return _c("div", { staticClass: "container cart" }, [
     _vm._m(0),
     _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("h3", [
+        _vm._v(
+          "Total price: " + _vm._s(this.$store.state.cart.totalPrice) + " ₽"
+        )
+      ])
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "row" },
@@ -37878,21 +37915,23 @@ var render = function() {
       0
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _c(
-          "router-link",
-          {
-            staticClass: "waves-effect waves-light btn-large deep-purple",
-            attrs: { to: { name: "order" } }
-          },
-          [_c("b", [_vm._v("ORDER NOW")])]
+    this.pizzas.length > 0
+      ? _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "waves-effect waves-light btn-large deep-purple",
+                attrs: { to: { name: "order" } }
+              },
+              [_c("b", [_vm._v("ORDER NOW")])]
+            )
+          ],
+          1
         )
-      ],
-      1
-    )
+      : _c("div", { staticClass: "row" }, [_c("h2", [_vm._v("is empty")])])
   ])
 }
 var staticRenderFns = [
@@ -38335,7 +38374,48 @@ var render = function() {
           )
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.modal
+      ? _c("div", {}, [
+          _c(
+            "div",
+            {
+              staticClass: "modal open",
+              staticStyle: {
+                "z-index": "1003",
+                display: "block",
+                opacity: "1",
+                top: "10%",
+                transform: "scaleX(1) scaleY(1)"
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("h3", [_vm._v(_vm._s(this.message))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "modal-close waves-effect waves-green btn-flat",
+                    attrs: { href: "/" },
+                    on: { click: _vm.toogleModal }
+                  },
+                  [_vm._v("Agree")]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "modal-overlay",
+            staticStyle: { "z-index": "1002", display: "block", opacity: "0.5" }
+          })
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -54931,17 +55011,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
     cart: {
-      pizzas: []
+      pizzas: [],
+      totalPrice: 0
     }
   },
   mutations: {
     addPizza: function addPizza(state, pizza) {
       state.cart.pizzas.push(pizza);
+      state.cart.totalPrice += pizza.price;
     },
     removePizza: function removePizza(state, pizzaRemove) {
       for (var i = 0; i < state.cart.pizzas.length; i++) {
         if (state.cart.pizzas[i].id == pizzaRemove.id) {
           state.cart.pizzas.splice(i, 1);
+          state.cart.totalPrice -= pizzaRemove.price;
           break;
         }
       }

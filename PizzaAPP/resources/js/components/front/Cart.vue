@@ -4,18 +4,24 @@
             <h1>Cart</h1>
         </div>
         <div class="row">
+            <h3>Total price: {{ this.$store.state.cart.totalPrice}} ₽</h3>
+        </div>
+        <div class="row">
             <div v-for="pizza in pizzas">
                 <cart-card
                     v-bind:pizza="pizza">
                 </cart-card>
             </div>
         </div>
-        <div class="row">
+        <div class="row"
+        v-if="this.pizzas.length>0">
             <router-link :to="{ name: 'order' }"
                          class="waves-effect waves-light btn-large deep-purple">
                 <b>ORDER NOW</b>
             </router-link>
         </div>
+        <div class="row"
+        v-else><h2>is empty</h2></div>
     </div>
 </template>
 

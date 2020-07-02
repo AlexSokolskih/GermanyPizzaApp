@@ -65,16 +65,19 @@ const store = new Vuex.Store({
     state: {
         cart: {
             pizzas:[],
+            totalPrice:0,
         }
     },
     mutations: {
         addPizza(state, pizza) {
             state.cart.pizzas.push(pizza);
+            state.cart.totalPrice += pizza.price;
         },
         removePizza(state, pizzaRemove) {
             for (var i=0; i<state.cart.pizzas.length; i++){
                 if (state.cart.pizzas[i].id == pizzaRemove.id){
                     state.cart.pizzas.splice(i, 1);
+                    state.cart.totalPrice -= pizzaRemove.price;
                     break;
                 }
             }

@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('pizzas', 'API\PizzaController@index');
+Route::get('rates', 'API\RateController@index');
 Route::post('orders', 'API\OrderController@store');

@@ -1936,6 +1936,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Cart",
@@ -1968,8 +1970,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.pizzas = pizzasGlobal;
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),
@@ -2087,6 +2088,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getpizzas();
+    this.getrates();
   },
   methods: {
     getpizzas: function getpizzas() {
@@ -2094,6 +2096,18 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/pizzas').then(function (response) {
         _this.pizzas = response.data;
+      })["catch"](function (error) {
+        //this.errored = true;
+        console.log('error:');
+        console.log(error);
+      });
+    },
+    getrates: function getrates() {
+      var _this2 = this;
+
+      axios.get('/api/rates').then(function (response) {
+        _this2.$store.state.rates.USD_RUB = response.data.usd_rub;
+        _this2.$store.state.rates.EUR_RUB = response.data.eur_rub;
       })["catch"](function (error) {
         //this.errored = true;
         console.log('error:');
@@ -2298,7 +2312,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }).then(function (response) {
         console.log(response);
         _this.modal = true;
-        _this.message = "<h3>we are starting to cook your pizza</h3>";
+        _this.message = "we are starting to cook your pizza";
       })["catch"](function (error) {
         console.log('error:');
         console.log(error);
@@ -37903,7 +37917,11 @@ var render = function() {
         _vm._v(
           "Total price: " + _vm._s(this.$store.state.cart.totalPrice) + " ₽"
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c("h5", [_vm._v(_vm._s(this.$store.getters.priceEur) + " €")]),
+      _vm._v(" "),
+      _c("h5", [_vm._v(_vm._s(this.$store.getters.priceUsd) + " $")])
     ]),
     _vm._v(" "),
     _c(
@@ -55013,6 +55031,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     cart: {
       pizzas: [],
       totalPrice: 0
+    },
+    rates: {
+      USD_RUB: 1,
+      EUR_RUB: 1
     }
   },
   mutations: {
@@ -55033,6 +55055,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   getters: {
     countPizzasInCart: function countPizzasInCart(state) {
       return state.cart.pizzas.length;
+    },
+    priceEur: function priceEur(state) {
+      return (state.cart.totalPrice / state.rates.EUR_RUB).toFixed(2);
+    },
+    priceUsd: function priceUsd(state) {
+      return (state.cart.totalPrice / state.rates.USD_RUB).toFixed(2);
     }
   }
 });

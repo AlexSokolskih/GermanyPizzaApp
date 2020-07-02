@@ -130,7 +130,7 @@
                     .then((response) => {
                         console.log(response);
                         this.modal = true;
-                        this.message = "<h3>we are starting to cook your pizza</h3>";
+                        this.message = "we are starting to cook your pizza";
                     })
                     .catch(function (error) {
                          console.log('error:');

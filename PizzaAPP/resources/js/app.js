@@ -66,7 +66,11 @@ const store = new Vuex.Store({
         cart: {
             pizzas:[],
             totalPrice:0,
-        }
+        },
+        rates: {
+            USD_RUB: 1,
+            EUR_RUB: 1,
+        },
     },
     mutations: {
         addPizza(state, pizza) {
@@ -86,6 +90,12 @@ const store = new Vuex.Store({
     getters: {
         countPizzasInCart: state => {
             return state.cart.pizzas.length;
+        },
+        priceEur: state => {
+            return (state.cart.totalPrice / state.rates.EUR_RUB).toFixed(2);
+        },
+        priceUsd: state => {
+            return (state.cart.totalPrice / state.rates.USD_RUB).toFixed(2);
         }
     }
 })

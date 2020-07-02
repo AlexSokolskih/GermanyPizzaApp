@@ -5,6 +5,8 @@
         </div>
         <div class="row">
             <h3>Total price: {{ this.$store.state.cart.totalPrice}} ₽</h3>
+            <h5>{{ this.$store.getters.priceEur }} €</h5>
+            <h5>{{ this.$store.getters.priceUsd }} $</h5>
         </div>
         <div class="row">
             <div v-for="pizza in pizzas">
@@ -58,8 +60,6 @@
                 this.pizzas = pizzasGlobal;
             }
         },
-        computed: {
-        }
     }
 </script>
 

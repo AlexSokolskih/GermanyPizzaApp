@@ -4,7 +4,7 @@
             <div class="card-image">
                 <img v-bind:src="'img/'+pizza.image">
             </div>
-            <span class="card-title"><b>{{ pizza.name }}</b></span>
+            <div class="card-title center"><b>{{ pizza.name }}</b></div>
             <div class="card-content">
                 <p>{{ pizza.description }}</p>
             </div>

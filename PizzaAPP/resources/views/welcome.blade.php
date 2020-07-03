@@ -30,12 +30,16 @@
             width: auto;
         }
 
+
         nav i.cart-icon{
             display: inline-block;
         }
         nav .counter-pizza{
             vertical-align: top;
             font-size: large;
+        }
+        nav ul>li .line-height50{
+            line-height: 50px;
         }
 
         .card .price{

@@ -1938,6 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Cart",
@@ -37913,9 +37914,19 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("h3", [
+      _c("h5", [
         _vm._v(
-          "Total price: " + _vm._s(this.$store.state.cart.totalPrice) + " ₽"
+          "Delivery price " +
+            _vm._s(this.$store.state.cart.deliveryPrice) +
+            " ₽"
+        )
+      ]),
+      _vm._v(" "),
+      _c("h4", [
+        _vm._v(
+          "Total price: " +
+            _vm._s(this.$store.getters.totalPriceWithDelivery) +
+            " ₽"
         )
       ]),
       _vm._v(" "),
@@ -38112,27 +38123,30 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "navbar-fixed" }, [
         _c("nav", { staticClass: "background-purple" }, [
           _c("div", { staticClass: "nav-wrapper" }, [
             _vm._m(0),
             _vm._v(" "),
-            _c(
-              "ul",
-              {
-                staticClass: "right hide-on-med-and-down",
-                attrs: { id: "nav-mobile" }
-              },
-              [
-                _c(
-                  "li",
-                  {},
-                  [
-                    _c("router-link", { attrs: { to: { name: "cart" } } }, [
+            _c("ul", { staticClass: "right", attrs: { id: "" } }, [
+              _c(
+                "li",
+                {},
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "line-height50",
+                      attrs: { to: { name: "cart" } }
+                    },
+                    [
                       !_vm.isCartEmpty
                         ? _c(
                             "span",
-                            { staticClass: "counter-pizza green-text" },
+                            {
+                              staticClass:
+                                "counter-pizza green-text line-height50"
+                            },
                             [
                               _vm._v(
                                 _vm._s(this.$store.getters.countPizzasInCart) +
@@ -38145,19 +38159,20 @@ var render = function() {
                       _c(
                         "i",
                         {
-                          staticClass: "material-icons inline cart-icon",
+                          staticClass:
+                            "material-icons inline cart-icon line-height50",
                           class: {
                             "green-text": !_vm.isCartEmpty
                           }
                         },
                         [_vm._v("shopping_cart")]
                       )
-                    ])
-                  ],
-                  1
-                )
-              ]
-            )
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
           ])
         ])
       ]),
@@ -38174,7 +38189,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "a",
-      { staticClass: "brand-logo center logo-wrapper", attrs: { href: "#" } },
+      { staticClass: "brand-logo center logo-wrapper", attrs: { href: "/" } },
       [
         _c("img", {
           staticClass: "css-adaptive",
@@ -38471,7 +38486,7 @@ var render = function() {
         _c("img", { attrs: { src: "img/" + _vm.pizza.image } })
       ]),
       _vm._v(" "),
-      _c("span", { staticClass: "card-title" }, [
+      _c("div", { staticClass: "card-title center" }, [
         _c("b", [_vm._v(_vm._s(_vm.pizza.name))])
       ]),
       _vm._v(" "),
@@ -55030,7 +55045,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
     cart: {
       pizzas: [],
-      totalPrice: 0
+      totalPrice: 0,
+      deliveryPrice: 120
     },
     rates: {
       USD_RUB: 1,
@@ -55057,10 +55073,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
       return state.cart.pizzas.length;
     },
     priceEur: function priceEur(state) {
-      return (state.cart.totalPrice / state.rates.EUR_RUB).toFixed(2);
+      return (store.getters.totalPriceWithDelivery / state.rates.EUR_RUB).toFixed(2);
     },
     priceUsd: function priceUsd(state) {
-      return (state.cart.totalPrice / state.rates.USD_RUB).toFixed(2);
+      return (store.getters.totalPriceWithDelivery / state.rates.USD_RUB).toFixed(2);
+    },
+    totalPriceWithDelivery: function totalPriceWithDelivery(state) {
+      return state.cart.totalPrice + state.cart.deliveryPrice;
     }
   }
 });

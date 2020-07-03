@@ -4,7 +4,8 @@
             <h1>Cart</h1>
         </div>
         <div class="row">
-            <h3>Total price: {{ this.$store.state.cart.totalPrice}} ₽</h3>
+            <h5>Delivery price {{ this.$store.state.cart.deliveryPrice}} ₽</h5>
+            <h4>Total price: {{ this.$store.getters.totalPriceWithDelivery}} ₽</h4>
             <h5>{{ this.$store.getters.priceEur }} €</h5>
             <h5>{{ this.$store.getters.priceUsd }} $</h5>
         </div>

@@ -66,6 +66,7 @@ const store = new Vuex.Store({
         cart: {
             pizzas:[],
             totalPrice:0,
+            deliveryPrice: 120,
         },
         rates: {
             USD_RUB: 1,
@@ -92,11 +93,15 @@ const store = new Vuex.Store({
             return state.cart.pizzas.length;
         },
         priceEur: state => {
-            return (state.cart.totalPrice / state.rates.EUR_RUB).toFixed(2);
+            return (store.getters.totalPriceWithDelivery / state.rates.EUR_RUB).toFixed(2);
         },
         priceUsd: state => {
-            return (state.cart.totalPrice / state.rates.USD_RUB).toFixed(2);
-        }
+            return (store.getters.totalPriceWithDelivery / state.rates.USD_RUB).toFixed(2);
+        },
+        totalPriceWithDelivery: state => {
+            return (state.cart.totalPrice + state.cart.deliveryPrice);
+        },
+
     }
 })
 
